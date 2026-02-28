@@ -1,0 +1,1 @@
+weflab: `ws://localhost:8080/api/weflab?key=(id)`
