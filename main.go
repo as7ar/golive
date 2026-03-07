@@ -4,6 +4,7 @@ import (
 	"flag"
 	"net/http"
 
+	"github.com/as7ar/golive/chzzk"
 	"github.com/as7ar/golive/logger"
 	"github.com/as7ar/golive/soop"
 	"github.com/as7ar/golive/weflab"
@@ -18,8 +19,13 @@ func main() {
 	http.HandleFunc("/api", wsHandler)
 
 	http.HandleFunc("/api/weflab", weflab.WeflabHandler)
+	http.HandleFunc("/api/chzzk", chzzk.ChzzkHandler)
 	http.HandleFunc("/api/soop", soop.SoopHandler)
 
 	logger.Info("server started on :" + port)
-	http.ListenAndServe(":"+port, nil)
+	err := http.ListenAndServe(":"+port, nil)
+	if err != nil {
+		logger.Err(err)
+		return
+	}
 }
