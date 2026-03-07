@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -304,11 +305,11 @@ func SoopHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	client, err := ConnectSoop(bjid, false, enableChat, func(d Alert) {
-
 		data, _ := json.Marshal(d)
-
 		ws.WriteMessage(websocket.TextMessage, data)
 	})
+
+	log.Println("client connected, bjid:", bjid)
 
 	if err != nil {
 		ws.WriteMessage(websocket.TextMessage, []byte(`{"error":"connect failed"}`))

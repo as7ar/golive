@@ -169,6 +169,9 @@ func WeflabHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Println("client connected, key:", key)
 
+	listener := NewXHRListener(key)
+	go listener.Start()
+
 	wef, err := NewWeflabClient(key)
 	if err != nil {
 		log.Println("weflab error:", err)
