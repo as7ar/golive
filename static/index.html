@@ -1,11 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8" />
-    <title>My Docs</title>
+    <meta charset="UTF-8">
+    <title>WebSocket API Docs</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background:#0f172a;
+            color:#e5e7eb;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            padding:40px 20px;
+        }
+
+        h1{
+            font-size:32px;
+            margin-bottom:10px;
+        }
+
+        h2{
+            margin-top:40px;
+            border-bottom:1px solid #334155;
+            padding-bottom:8px;
+        }
+
+        .endpoint{
+            background:#1e293b;
+            padding:12px 16px;
+            border-radius:8px;
+            margin-top:10px;
+            font-family:monospace;
+            color:#38bdf8;
+        }
+
+        pre{
+            background:#020617;
+            padding:16px;
+            border-radius:10px;
+            overflow:auto;
+            border:1px solid #1e293b;
+        }
+
+        code{
+            color:#e2e8f0;
+        }
+
+        .section{
+            margin-top:25px;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#334155;
+            padding:3px 8px;
+            border-radius:6px;
+            font-size:12px;
+            margin-left:8px;
+        }
+
+        .footer{
+            margin-top:50px;
+            font-size:13px;
+            color:#94a3b8;
+            text-align:center;
+        }
+    </style>
+
 </head>
+
 <body>
-<h1>API Docs</h1>
-<p>이 서버는 웹소켓 테스트용입니다.</p>
+
+<div class="container">
+
+    <h1>WebSocket API Documentation</h1>
+
+    <h2>Usage</h2>
+
+    <div class="section">
+        <b>Weflab</b>
+        <div class="endpoint">
+            ws://localhost:(port)/api/weflab?key=(id)
+        </div>
+    </div>
+
+    <div class="section">
+        <b>Soop</b>
+        <div class="endpoint">
+            ws://localhost:(port)/api/soop?bjid=(bjid)&chat=(true/false)
+        </div>
+    </div>
+
+
+    <h2>Response</h2>
+
+    <div class="section">
+        <h3>Weflab <span class="tag">JSON</span></h3>
+
+        <pre><code>{
+  "uid": "string",
+  "uname": "string",
+  "message": "string",
+  "value": 0,
+  "platform": "string",
+  "type": "string"
+}</code></pre>
+
+    </div>
+
+
+    <div class="section">
+        <h3>Soop <span class="tag">JSON</span></h3>
+
+        <pre><code>{
+  "Platform": "string",
+  "name": "string",
+  "Value": 0,
+  "Message": "string",
+  "Type": "string"
+}</code></pre>
+
+    </div>
+
+    <div class="footer">
+        Made by. AS7AR
+    </div>
+
+</div>
+
 </body>
 </html>
