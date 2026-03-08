@@ -25,11 +25,11 @@ type SoopLiveInfo struct {
 }
 
 type Alert struct {
-	Platform string
-	Name     string
-	Value    int
-	Message  string
-	Type     string
+	Platform string `json:"platform"`
+	Name     string `json:"name"`
+	Value    int    `json:"value,omitempty"`
+	Message  string `json:"message,omitempty"`
+	Type     string `json:"type"`
 }
 
 type SoopPacket struct {
@@ -262,11 +262,11 @@ func (c *SoopClient) emit(nickname string, pay int, msg string) {
 	}
 
 	c.handler(Alert{
-		Platform: "Soop",
+		Platform: "soop",
 		Name:     nickname,
 		Value:    pay,
 		Message:  msg,
-		Type:     "Donation",
+		Type:     "donation",
 	})
 }
 
@@ -276,10 +276,10 @@ func (c *SoopClient) emitChat(nickname string, msg string) {
 	}
 
 	c.handler(Alert{
-		Platform: "Soop",
+		Platform: "soop",
 		Name:     nickname,
 		Message:  msg,
-		Type:     "Chat",
+		Type:     "chat",
 	})
 }
 
@@ -305,7 +305,10 @@ func SoopHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	client, err := ConnectSoop(bjid, false, enableChat, func(d Alert) {
-		data, _ := json.Marshal(d)
+		data, err := json.Marshal(d)
+		if err != nil {
+			return
+		}
 		ws.WriteMessage(websocket.TextMessage, data)
 	})
 
