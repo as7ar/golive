@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/as7ar/golive/logger"
 	"github.com/gorilla/websocket"
 )
 
@@ -195,6 +196,8 @@ func ChzzkHandler(w http.ResponseWriter, r *http.Request) {
 
 	lastPingTime := time.Now()
 	lastMessageTime := time.Now()
+
+	logger.Info("client connected, id:", id)
 
 	go func() {
 		ticker := time.NewTicker(1 * time.Second)
