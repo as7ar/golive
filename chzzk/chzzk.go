@@ -270,10 +270,16 @@ func ChzzkHandler(w http.ResponseWriter, r *http.Request) {
 
 					var donation *DonationExtras
 
-					if int(msgType) == 10 {
+					if int(msgType) == 10 && extrasStr != "" {
 						var extra DonationExtras
 						if err := json.Unmarshal([]byte(extrasStr), &extra); err == nil {
 							donation = &extra
+
+							if extra.DonationType == "MISSION" {
+								logger.Info("mission donation:", extra.PayAmount, extra.MissionText)
+							} else {
+								logger.Info("normal donation:", extra.PayAmount)
+							}
 						}
 					}
 
